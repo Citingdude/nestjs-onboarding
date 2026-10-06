@@ -9,7 +9,7 @@ on:
 
 jobs:
   lint-build-test:
-    uses: wisemen-digital/devops-github-actions/.github/workflows/project-build-and-test.yml@v1
+    uses: wisemen-digital/devops-github-actions/.github/workflows/project-build-and-test.yml@v2
     if: github.event.pull_request.draft == false
     with:
       test-mailpit-enabled: true

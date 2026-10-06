@@ -15,7 +15,7 @@ on:
 
 jobs:
   promote-to-env:
-    uses: wisemen-digital/devops-github-actions/.github/workflows/docker-promote-to-environment.yml@v1
+    uses: wisemen-digital/devops-github-actions/.github/workflows/docker-promote-to-environment.yml@v2
     with:
       environment-source: ${{ inputs.source-tag }}
       environment-target: ${{ inputs.environment }}
