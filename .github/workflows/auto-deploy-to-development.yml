@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-deploy:
-    uses: wisemen-digital/devops-github-actions/.github/workflows/docker-build-and-deploy.yml@v1
+    uses: wisemen-digital/devops-github-actions/.github/workflows/docker-build-and-deploy.yml@v2
     with:
       environment: development
       vendor: scaleway
