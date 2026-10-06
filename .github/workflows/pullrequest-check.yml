@@ -1,0 +1,22 @@
+---
+name: PR Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches:
+      - main
+
+jobs:
+  lint-build-test:
+    uses: wisemen-digital/devops-github-actions/.github/workflows/project-build-and-test.yml@v1
+    if: github.event.pull_request.draft == false
+    with:
+      test-mailpit-enabled: true
+      test-nats-enabled: true
+      test-playwright-image: 'mcr.microsoft.com/playwright:v1.56.1'
+      test-postgres-image: postgis/postgis:16-3.5-alpine
+      test-redis-enabled: true
+      test-typesense-enabled: true
+      test-typesense-image: 'typesense/typesense:29.0'
+    secrets: inherit

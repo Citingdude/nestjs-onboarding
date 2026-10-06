@@ -1,0 +1,1 @@
+export * from './view-contact-index.response.type.js'

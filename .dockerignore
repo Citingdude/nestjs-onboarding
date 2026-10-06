@@ -1,0 +1,29 @@
+# General
+**/.DS_Store
+**/LICENSE
+
+# Git
+**/.git
+**/.github
+**/.gitattributes
+**/.gitignore
+
+# Docker
+**/.dockerignore
+**/Dockerfile
+
+# Node
+**/node_modules
+**/.async-api
+**/dist
+**/npm-debug.log
+**/docs
+**/README.md
+**/CHANGELOG.md
+**/AGENTS.md
+**/dangerfile.ts
+
+# Env
+.env
+.env.*
+!.env.example

@@ -1,0 +1,127 @@
+{
+	"contact": {
+		"created": {
+			"v1": "Contact created"
+		},
+		"updated": {
+			"v1": "Contact updated"
+		},
+		"deleted": {
+			"v1": "Contact deleted"
+		},
+		"csv": {
+			"generated": {
+				"v1": "Contact CSV export generated"
+			}
+		}
+	},
+	"api-key": {
+		"created": {
+			"v1": "API key created"
+		},
+		"deleted": {
+			"v1": "API key deleted"
+		}
+	},
+	"export": {
+		"succeeded": {
+			"v1": "Export succeeded"
+		},
+		"failed": {
+			"v1": "Export failed"
+		}
+	},
+	"file": {
+		"created": {
+			"v1": "File created"
+		},
+		"uploaded": {
+			"v1": "File uploaded",
+			"v2": "File uploaded"
+		},
+		"variant": {
+			"created": {
+				"v1": "File variant {label} created"
+			}
+		}
+	},
+	"notification": {
+		"created": {
+			"v1": "Notification created {type}"
+		},
+		"read": {
+			"v1": "Notification read",
+			"all": {
+				"v1": "notification.read.all"
+			}
+		},
+		"unread": {
+			"v1": "Notification unread"
+		},
+		"types": {
+			"migrated": {
+				"v1": "Notification types migrated"
+			}
+		},
+		"preference": {
+			"preset": {
+				"updated": {
+					"v1": "Notification preference preset updated"
+				}
+			}
+		}
+	},
+	"role": {
+		"created": {
+			"v1": "Role {roleName} created"
+		},
+		"deleted": {
+			"v1": "Role {roleName} deleted"
+		},
+		"renamed": {
+			"v1": "Role {previousName} renamed to {newName}"
+		},
+		"permissions": {
+			"updated": {
+				"v1": "Permissions of role {roleName} updated"
+			},
+			"cache": {
+				"cleared": {
+					"v1": "Role permission cache cleared"
+				}
+			}
+		}
+	},
+	"test-notification": {
+		"sent": {
+			"v1": "Test notification sent"
+		}
+	},
+	"user": {
+		"created": {
+			"v1": "User created"
+		},
+		"updated": {
+			"v1": "User updated"
+		},
+		"role-assigned": {
+			"v1": "Role assigned to user"
+		},
+		"roles-set": {
+			"v1": "Roles of user set"
+		},
+		"impersonated": {
+			"v1": "User impersonated"
+		},
+		"notification": {
+			"created": {
+				"v1": "User notification created"
+			}
+		},
+		"default-notification-preferences": {
+			"assigned": {
+				"v1": "Default notification preferences assigned to user"
+			}
+		}
+	}
+}

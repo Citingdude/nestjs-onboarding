@@ -1,0 +1,23 @@
+---
+name: Promote to environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment to deploy TO
+        type: environment
+        required: true
+      source-tag:
+        description: Source tag (defaults to previous environment)
+        type: string
+        required: false
+
+jobs:
+  promote-to-env:
+    uses: wisemen-digital/devops-github-actions/.github/workflows/docker-promote-to-environment.yml@v1
+    with:
+      environment-source: ${{ inputs.source-tag }}
+      environment-target: ${{ inputs.environment }}
+      vendor: scaleway
+    secrets: inherit

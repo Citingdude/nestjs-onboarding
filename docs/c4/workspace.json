@@ -1,0 +1,584 @@
+{
+  "configuration" : { },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedDate" : "2026-06-15T14:40:31Z",
+  "model" : {
+    "people" : [ {
+      "id" : "1",
+      "name" : "Organization Admin",
+      "properties" : {
+        "structurizr.dsl.identifier" : "orgAdmin"
+      },
+      "relationships" : [ {
+        "description" : "manage users, settings",
+        "destinationId" : "10",
+        "id" : "30",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      }, {
+        "description" : "manage users, settings",
+        "destinationId" : "4",
+        "id" : "31",
+        "linkedRelationshipId" : "30",
+        "sourceId" : "1"
+      } ],
+      "tags" : "Element,Person,Admin"
+    }, {
+      "description" : "Interacts with the system through web/mobile apps",
+      "id" : "2",
+      "name" : "Application User",
+      "properties" : {
+        "structurizr.dsl.identifier" : "user"
+      },
+      "relationships" : [ {
+        "description" : "use the app",
+        "destinationId" : "10",
+        "id" : "32",
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      }, {
+        "description" : "use the app",
+        "destinationId" : "4",
+        "id" : "33",
+        "linkedRelationshipId" : "32",
+        "sourceId" : "2"
+      } ],
+      "tags" : "Element,Person,User"
+    } ],
+    "softwareSystems" : [ {
+      "description" : "Provides telematics data to the platform",
+      "documentation" : { },
+      "id" : "3",
+      "name" : "Signoz",
+      "properties" : {
+        "structurizr.dsl.identifier" : "signoz"
+      },
+      "tags" : "Element,Software System,Signoz"
+    }, {
+      "containers" : [ {
+        "description" : "Receives and routes incoming requests",
+        "documentation" : { },
+        "id" : "5",
+        "name" : "Ingress",
+        "properties" : {
+          "structurizr.dsl.identifier" : "mainPlatform.ingress"
+        },
+        "tags" : "Element,Container,Ingress,Kubernetes",
+        "technology" : "Kubernetes"
+      }, {
+        "description" : "Primary data store for application",
+        "documentation" : { },
+        "id" : "6",
+        "name" : "Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "mainPlatform.database"
+        },
+        "tags" : "Element,Container,PostgreSQL",
+        "technology" : "Postgresql"
+      }, {
+        "description" : "Stores cached, frequently used data",
+        "documentation" : { },
+        "id" : "7",
+        "name" : "Cache",
+        "properties" : {
+          "structurizr.dsl.identifier" : "mainPlatform.cache"
+        },
+        "tags" : "Element,Container,Redis",
+        "technology" : "Redis"
+      }, {
+        "description" : "Streams events/messages throughout the system",
+        "documentation" : { },
+        "id" : "8",
+        "name" : "Internal Event Bus",
+        "properties" : {
+          "structurizr.dsl.identifier" : "mainPlatform.eventBus"
+        },
+        "tags" : "Element,Container,Nats",
+        "technology" : "NATS"
+      }, {
+        "description" : "Storage for media files and documents",
+        "documentation" : { },
+        "id" : "9",
+        "name" : "Object Storage",
+        "properties" : {
+          "structurizr.dsl.identifier" : "mainPlatform.objectStorage"
+        },
+        "tags" : "Element,Container,ObjectStorage",
+        "technology" : "S3"
+      }, {
+        "description" : "User interface for the platform",
+        "documentation" : { },
+        "id" : "10",
+        "name" : "Web Application",
+        "properties" : {
+          "structurizr.dsl.identifier" : "mainPlatform.webApp"
+        },
+        "relationships" : [ {
+          "description" : "manages media",
+          "destinationId" : "9",
+          "id" : "11",
+          "sourceId" : "10",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        }, {
+          "description" : "initiates requests to API",
+          "destinationId" : "5",
+          "id" : "12",
+          "sourceId" : "10",
+          "tags" : "Relationship"
+        }, {
+          "description" : "receives live updates",
+          "destinationId" : "8",
+          "id" : "13",
+          "sourceId" : "10",
+          "tags" : "Relationship",
+          "technology" : "Websocket"
+        } ],
+        "tags" : "Element,Container,Vue",
+        "technology" : "Vue"
+      }, {
+        "description" : "collects logs and telemetry",
+        "documentation" : { },
+        "id" : "14",
+        "name" : "Otel collector",
+        "properties" : {
+          "structurizr.dsl.identifier" : "mainPlatform.otelCollector"
+        },
+        "relationships" : [ {
+          "destinationId" : "3",
+          "id" : "15",
+          "sourceId" : "14",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,opentelemetry",
+        "technology" : "opentelemetry"
+      }, {
+        "description" : "Core REST",
+        "documentation" : { },
+        "id" : "17",
+        "name" : "API",
+        "properties" : {
+          "structurizr.dsl.identifier" : "mainPlatform.api"
+        },
+        "relationships" : [ {
+          "description" : "CRUD operations",
+          "destinationId" : "6",
+          "id" : "18",
+          "sourceId" : "17",
+          "tags" : "Relationship",
+          "technology" : "TCP"
+        }, {
+          "description" : "store/retrieve cached data",
+          "destinationId" : "7",
+          "id" : "19",
+          "sourceId" : "17",
+          "tags" : "Relationship",
+          "technology" : "TCP"
+        }, {
+          "description" : "manage files",
+          "destinationId" : "9",
+          "id" : "20",
+          "sourceId" : "17",
+          "tags" : "Relationship",
+          "technology" : "HTTPS/S3"
+        }, {
+          "description" : "produce/consume events",
+          "destinationId" : "8",
+          "id" : "21",
+          "sourceId" : "17",
+          "tags" : "Relationship"
+        }, {
+          "description" : "requests routed from ingress",
+          "destinationId" : "5",
+          "id" : "22",
+          "sourceId" : "17",
+          "tags" : "Relationship"
+        }, {
+          "description" : "send logs spans",
+          "destinationId" : "14",
+          "id" : "23",
+          "sourceId" : "17",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Node.js",
+        "technology" : "Node.js"
+      }, {
+        "description" : "Performs background processing for asynchronous tasks",
+        "documentation" : { },
+        "id" : "24",
+        "name" : "Async Worker",
+        "properties" : {
+          "structurizr.dsl.identifier" : "mainPlatform.asyncWorker"
+        },
+        "relationships" : [ {
+          "description" : "reads/writes",
+          "destinationId" : "6",
+          "id" : "25",
+          "sourceId" : "24",
+          "tags" : "Relationship"
+        }, {
+          "description" : "use cache",
+          "destinationId" : "7",
+          "id" : "26",
+          "sourceId" : "24",
+          "tags" : "Relationship"
+        }, {
+          "description" : "store/retrieve files",
+          "destinationId" : "9",
+          "id" : "27",
+          "sourceId" : "24",
+          "tags" : "Relationship"
+        }, {
+          "description" : "consume/produce events",
+          "destinationId" : "8",
+          "id" : "28",
+          "sourceId" : "24",
+          "tags" : "Relationship"
+        }, {
+          "description" : "send logs spans",
+          "destinationId" : "14",
+          "id" : "29",
+          "sourceId" : "24",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Node.js",
+        "technology" : "Node.js"
+      } ],
+      "description" : "Core application platform",
+      "documentation" : { },
+      "id" : "4",
+      "name" : "Project template",
+      "properties" : {
+        "structurizr.dsl.identifier" : "mainPlatform"
+      },
+      "relationships" : [ {
+        "destinationId" : "3",
+        "id" : "16",
+        "linkedRelationshipId" : "15",
+        "sourceId" : "4"
+      } ],
+      "tags" : "Element,Software System,Wisemen"
+    } ]
+  },
+  "name" : "Wisemen project template",
+  "properties" : {
+    "structurizr.inspection.error" : "24",
+    "structurizr.inspection.info" : "0",
+    "structurizr.inspection.ignore" : "0",
+    "structurizr.inspection.warning" : "0"
+  },
+  "views" : {
+    "configuration" : {
+      "defaultView" : "SystemLandscape-001",
+      "lastSavedView" : "mainPlatform",
+      "styles" : {
+        "elements" : [ {
+          "shape" : "RoundedBox",
+          "tag" : "API"
+        }, {
+          "shape" : "MobileDevicePortrait",
+          "stroke" : "#3ddb85",
+          "tag" : "Android"
+        }, {
+          "shape" : "MobileDevicePortrait",
+          "tag" : "Apple"
+        }, {
+          "stroke" : "#0a8191",
+          "tag" : "AzureAD"
+        }, {
+          "stroke" : "#006fd4",
+          "tag" : "AzureEventHub"
+        }, {
+          "strokeWidth" : 3,
+          "tag" : "Boundary:SoftwareSystem"
+        }, {
+          "metadata" : true,
+          "tag" : "Container"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "DataStore"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        }, {
+          "shape" : "Window",
+          "tag" : "DesktopApp"
+        }, {
+          "background" : "#ffffff",
+          "border" : "Solid",
+          "metadata" : false,
+          "shape" : "RoundedBox",
+          "stroke" : "#1168bd",
+          "strokeWidth" : 4,
+          "tag" : "Element"
+        }, {
+          "shape" : "MobileDevicePortrait",
+          "stroke" : "#2cb7f6",
+          "tag" : "Flutter"
+        }, {
+          "strokeWidth" : 3,
+          "tag" : "Group"
+        }, {
+          "shape" : "Pipe",
+          "stroke" : "#000000",
+          "tag" : "Kafka"
+        }, {
+          "shape" : "MobileDevicePortrait",
+          "stroke" : "#6b57ff",
+          "tag" : "Kotlin"
+        }, {
+          "stroke" : "#2e6ce6",
+          "tag" : "Kubernetes"
+        }, {
+          "shape" : "RoundedBox",
+          "stroke" : "#f9322c",
+          "tag" : "Laravel"
+        }, {
+          "background" : "#4e629a",
+          "color" : "#ffffff",
+          "shape" : "Cylinder",
+          "stroke" : "#000000",
+          "tag" : "Maria DB"
+        }, {
+          "shape" : "Pipe",
+          "tag" : "MessageQueue"
+        }, {
+          "shape" : "MobileDevicePortrait",
+          "tag" : "MobileApp"
+        }, {
+          "shape" : "Cylinder",
+          "stroke" : "#5d87a2",
+          "tag" : "MySQL"
+        }, {
+          "tag" : "Nats"
+        }, {
+          "shape" : "RoundedBox",
+          "stroke" : "#e11e4d",
+          "tag" : "NestJS"
+        }, {
+          "shape" : "RoundedBox",
+          "stroke" : "#026e00",
+          "tag" : "Node.js"
+        }, {
+          "shape" : "Cylinder",
+          "stroke" : "#4f1696",
+          "tag" : "ObjectStorage"
+        }, {
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#31648c",
+          "color" : "#ffffff",
+          "shape" : "Cylinder",
+          "stroke" : "#000000",
+          "tag" : "PostgreSQL"
+        }, {
+          "shape" : "RoundedBox",
+          "tag" : "Python"
+        }, {
+          "shape" : "Pipe",
+          "stroke" : "#ff6600",
+          "tag" : "RabbitMQ"
+        }, {
+          "shape" : "Cylinder",
+          "stroke" : "#dd3528",
+          "tag" : "Redis"
+        }, {
+          "stroke" : "#e14225",
+          "tag" : "Redpanda"
+        }, {
+          "stroke" : "#e15141",
+          "tag" : "S3"
+        }, {
+          "stroke" : "#003f86",
+          "tag" : "SAP"
+        }, {
+          "stroke" : "#19ade5",
+          "tag" : "SITA"
+        }, {
+          "stroke" : "#4f108f",
+          "tag" : "Scaleway"
+        }, {
+          "stroke" : "#f36847",
+          "tag" : "Signoz"
+        }, {
+          "shape" : "MobileDevicePortrait",
+          "stroke" : "#f05138",
+          "tag" : "Swift"
+        }, {
+          "stroke" : "#f22e45",
+          "tag" : "Twilio"
+        }, {
+          "tag" : "Typesense"
+        }, {
+          "shape" : "WebBrowser",
+          "stroke" : "#3fb984",
+          "tag" : "Vue"
+        }, {
+          "shape" : "WebBrowser",
+          "tag" : "Website"
+        }, {
+          "stroke" : "#1e183d",
+          "tag" : "Zitadel"
+        }, {
+          "shape" : "MobileDeviceLandscape",
+          "stroke" : "#d5d5d5",
+          "tag" : "iOS"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "description" : "Shows the deployable units making up the platform",
+      "dimensions" : {
+        "height" : 3195,
+        "width" : 3167
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 770,
+        "y" : 143
+      }, {
+        "id" : "2",
+        "x" : 200,
+        "y" : 143
+      }, {
+        "id" : "3",
+        "x" : 2645,
+        "y" : 2585
+      }, {
+        "id" : "5",
+        "x" : 424,
+        "y" : 1150
+      }, {
+        "id" : "6",
+        "x" : 424,
+        "y" : 2120
+      }, {
+        "id" : "7",
+        "x" : 1180,
+        "y" : 1615
+      }, {
+        "id" : "8",
+        "x" : 1265,
+        "y" : 1218
+      }, {
+        "id" : "9",
+        "x" : 1990,
+        "y" : 708
+      }, {
+        "id" : "10",
+        "x" : 438,
+        "y" : 696
+      }, {
+        "id" : "14",
+        "x" : 2010,
+        "y" : 2575
+      }, {
+        "id" : "17",
+        "x" : 427,
+        "y" : 1610
+      }, {
+        "id" : "24",
+        "x" : 2005,
+        "y" : 2115
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "mainPlatform",
+      "name" : "Container View: Project template",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "11"
+      }, {
+        "id" : "12"
+      }, {
+        "id" : "13"
+      }, {
+        "id" : "15"
+      }, {
+        "id" : "18"
+      }, {
+        "id" : "19"
+      }, {
+        "id" : "20",
+        "vertices" : [ {
+          "x" : 1335,
+          "y" : 993
+        } ]
+      }, {
+        "id" : "21"
+      }, {
+        "id" : "22"
+      }, {
+        "id" : "23",
+        "vertices" : [ {
+          "x" : 1355,
+          "y" : 2550
+        }, {
+          "x" : 1355,
+          "y" : 2725
+        } ]
+      }, {
+        "id" : "25",
+        "vertices" : [ {
+          "x" : 1605,
+          "y" : 2265
+        } ]
+      }, {
+        "id" : "26"
+      }, {
+        "id" : "27"
+      }, {
+        "id" : "28"
+      }, {
+        "id" : "29"
+      }, {
+        "id" : "30"
+      }, {
+        "id" : "32"
+      } ],
+      "softwareSystemId" : "4",
+      "title" : "Container View"
+    } ],
+    "systemLandscapeViews" : [ {
+      "description" : "High-level overview of the application platform",
+      "dimensions" : {
+        "height" : 1748,
+        "width" : 2480
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 720,
+        "y" : 205
+      }, {
+        "id" : "2",
+        "x" : 1435,
+        "y" : 195
+      }, {
+        "id" : "3",
+        "x" : 1770,
+        "y" : 905
+      }, {
+        "id" : "4",
+        "x" : 1025,
+        "y" : 920
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemLandscape-001",
+      "name" : "System Landscape View",
+      "order" : 1,
+      "paperSize" : "A5_Landscape",
+      "relationships" : [ {
+        "id" : "16"
+      }, {
+        "id" : "31"
+      }, {
+        "id" : "33"
+      } ],
+      "title" : "System Landscape"
+    } ]
+  }
+}

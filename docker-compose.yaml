@@ -1,0 +1,170 @@
+services:
+  postgres:
+    image: postgis/postgis:16-3.5-alpine
+    platform: linux/amd64
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/home/postgres/pgdata/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: test_db
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d test_db']
+      interval: 3s
+      timeout: 1s
+      retries: 10
+      start_period: 1s
+
+  zitadel:
+    user: '${UID:-1000}'
+    image: 'ghcr.io/zitadel/zitadel:latest'
+    command: 'start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled'
+    environment:
+      ZITADEL_DATABASE_POSTGRES_HOST: postgres
+      ZITADEL_DATABASE_POSTGRES_PORT: 5432
+      ZITADEL_DATABASE_POSTGRES_DATABASE: test_db
+      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: zitadel
+      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: zitadel
+      ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
+      ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: postgres
+      ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: password
+      ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
+      ZITADEL_EXTERNALSECURE: false
+      ZITADEL_FIRSTINSTANCE_MACHINEKEYPATH: /machinekey/zitadel-admin-sa.json
+      ZITADEL_FIRSTINSTANCE_ORG_MACHINE_MACHINE_USERNAME: zitadel-admin-sa
+      ZITADEL_FIRSTINSTANCE_ORG_MACHINE_MACHINE_NAME: Admin
+      ZITADEL_FIRSTINSTANCE_ORG_MACHINE_MACHINEKEY_TYPE: 1
+      ZITADEL_DEFAULTINSTANCE_FEATURES_LOGINV2_REQUIRED: false
+      ZITADEL_DEFAULTINSTANCE_SMTPCONFIGURATION_SMTP_HOST: mailpit:1025
+      ZITADEL_DEFAULTINSTANCE_SMTPCONFIGURATION_SMTP_USER: zitadel
+      ZITADEL_DEFAULTINSTANCE_SMTPCONFIGURATION_SMTP_PASSWORD: dev
+      ZITADEL_DEFAULTINSTANCE_SMTPCONFIGURATION_TLS: false
+      ZITADEL_DEFAULTINSTANCE_SMTPCONFIGURATION_FROM: no-reply@localhost
+      ZITADEL_DEFAULTINSTANCE_SMTPCONFIGURATION_FROMNAME: ZITADEL
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./.machinekey:/machinekey
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+
+  typesense:
+    image: typesense/typesense:29.0
+    ports:
+      - '8108:8108'
+    volumes:
+      - typesense-data:/data/typesense
+    environment:
+      TYPESENSE_DATA_DIR: /data
+      TYPESENSE_API_KEY: api_key
+
+  typesense_dashboard:
+    image: ghcr.io/bfritscher/typesense-dashboard:latest
+    restart: on-failure
+    volumes:
+      - typesense-dashboard-config:/srv/config.json
+    ports:
+      - '8188:80'
+
+  nats:
+    image: nats:latest
+    ports:
+      - '4222:4222'
+      - '8222:8222'
+      - '8223:8223'
+    volumes:
+      - nats-data:/nats/data
+      - ./nats.conf:/data/nats.conf:ro
+    command:
+      - '--config=/data/nats.conf'
+      - '--debug'
+      - '--http_port=8222'
+      - '--js'
+      - '--sd=/nats/data'
+
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+
+  s3service:
+    image: quay.io/minio/minio:latest
+    command: server --console-address ":9001" /data
+    environment:
+      MINIO_ROOT_USER: 'admin'
+      MINIO_ROOT_PASSWORD: 'password'
+    volumes:
+      - minio-data:/data
+    ports:
+      - '0.0.0.0:9000:9000'
+      - '9001:9001'
+    entrypoint: >
+      /bin/sh -c '
+        isAlive() { curl -sf http://127.0.0.1:9000/minio/health/live; }    # check if Minio is alive
+        minio $0 "$@" --quiet & echo $! > /tmp/minio.pid                   # start Minio in the background
+        while ! isAlive; do sleep 0.1; done                                # wait until Minio is alive
+        mc alias set minio http://127.0.0.1:9000 admin password            # setup Minio client
+        mc mb minio/test-bucket || true                                    # create a test bucket
+        mc anonymous set public minio/test-bucket                          # make the test bucket public
+        kill -s INT $(cat /tmp/minio.pid) && rm /tmp/minio.pid             # stop Minio
+        while isAlive; do sleep 0.1; done                                  # wait until Minio is stopped
+        exec minio $0 "$@"                                                 # start Minio in the foreground
+      '
+
+  go-feature-flag:
+    image: gofeatureflag/go-feature-flag:latest
+    ports:
+      - '1031:1031'
+    environment:
+      RETRIEVER_KIND: postgresql
+      RETRIEVER_URI: postgresql://postgres:password@postgres:5432/test_db
+      RETRIEVER_TABLE: feature_flag
+      LOGLEVEL: DEBUG
+    depends_on:
+      - postgres
+
+  mailpit:
+    image: axllent/mailpit
+    restart: unless-stopped
+    volumes:
+      - mailpit-data:/data
+    ports:
+      - 8025:8025
+      - 1025:1025
+    environment:
+      MP_MAX_MESSAGES: 5000
+      MP_DATABASE: /data/mailpit.db
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+
+  pgbouncer-hoop:
+    image: edoburu/pgbouncer:latest
+    environment:
+      DB_HOST: host.docker.internal
+      DB_PORT: 5433
+      DB_USER: noop
+      DB_PASSWORD: noop
+      DB_NAME: development
+      AUTH_TYPE: plain
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: 25
+      DEFAULT_POOL_SIZE: 10
+    ports:
+      - '6432:5432'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+volumes:
+  postgres-data:
+  zitadel-machinekey:
+  typesense-data:
+  typesense-dashboard-config:
+  nats-data:
+  nats-config:
+  minio-data:
+  mailpit-data:

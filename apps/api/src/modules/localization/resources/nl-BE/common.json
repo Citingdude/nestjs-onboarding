@@ -1,0 +1,9 @@
+{
+  "duration": {
+    "hours": {
+      "one": "{count} uur",
+      "other": "{count} uren"
+    }
+  },
+  "missing-translation": "Geen vertaling voor {key}"
+}

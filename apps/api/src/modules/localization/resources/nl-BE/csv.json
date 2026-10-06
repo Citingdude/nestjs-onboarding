@@ -1,0 +1,16 @@
+{
+  "event-logs": {
+    "file-name": "event-logs-{date}.csv",
+    "uuid": "UUID",
+    "created-at": "Aanmaakdatum",
+    "version": "Versie",
+    "source": "Bron",
+    "type": "Type",
+    "subject-type": "Onderwerp Type",
+    "subject-id": "Onderwerp ID",
+    "actor-type": "Actor Type",
+    "actor-id": "Actor ID",
+    "content": "Data",
+    "trace-id": "Trace ID"
+  }
+}

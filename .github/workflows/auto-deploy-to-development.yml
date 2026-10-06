@@ -1,0 +1,15 @@
+---
+name: Auto-deploy to development
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    uses: wisemen-digital/devops-github-actions/.github/workflows/docker-build-and-deploy.yml@v1
+    with:
+      environment: development
+      vendor: scaleway
+    secrets: inherit

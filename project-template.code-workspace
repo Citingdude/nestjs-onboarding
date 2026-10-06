@@ -1,0 +1,10 @@
+{
+  "folders": [
+    { "path": "./", "name": "root" },
+    { "path": "apps/api" },
+    { "path": "packages/" },
+  ],
+  "settings": {
+    "terminal.integrated.cwd": "${workspaceRoot}"
+  }
+}

@@ -1,0 +1,1 @@
+export const PRESIGN_FILE_EXPIRES_IN_SECONDS = 120

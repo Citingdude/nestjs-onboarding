@@ -1,0 +1,231 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+        "label": "API: clean && build",
+        "type": "shell",
+        "command": "pnpm clean && pnpm build",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: build",
+        "type": "shell",
+        "command": "pnpm build",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: type-check",
+        "type": "shell",
+        "command": "pnpm type-check",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: Remigrate monorepo DB",
+        "type": "shell",
+        "command": "POSTGRES_DOCKER_CONTAINER_ID=$(docker ps -q -f name=postgres); if [ -n \"$POSTGRES_DOCKER_CONTAINER_ID\" ]; then ZITADEL_DOCKER_CONTAINER_ID=$(docker ps -q -f name=zitadel-1); if [ -n \"$ZITADEL_DOCKER_CONTAINER_ID\" ]; then echo 'Stopping Zitadel...'; docker stop $ZITADEL_DOCKER_CONTAINER_ID; fi; docker exec $POSTGRES_DOCKER_CONTAINER_ID psql -U postgres -c 'DROP DATABASE IF EXISTS test_db;' -c 'CREATE DATABASE test_db;'; if [ -n \"$ZITADEL_DOCKER_CONTAINER_ID\" ]; then echo 'Restarting Zitadel...'; docker start $ZITADEL_DOCKER_CONTAINER_ID; fi; pnpm -C ${workspaceFolder}/apps/api typeorm migration:run --transaction each; else echo 'Error: Postgres container not found'; exit 1; fi",
+        "presentation": {
+            "reveal": "always",
+            "focus": true,
+            "panel": "shared"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "Stop all docker containers and start containers of current project",
+        "type": "shell",
+        "command": "docker stop $(docker ps -a -q) && docker compose up -d",
+        "presentation": {
+            "reveal": "always",
+            "focus": false,
+            "panel": "shared"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: Run playground",
+        "type": "shell",
+        "command": "pnpm clean && pnpm build && node --env-file=.env dist/src/entrypoints/playground.js",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: Insert local test system admin user",
+        "type": "shell",
+        "command": "pnpm build && node --env-file=.env.test dist/src/scripts/insert-local-test-user.js --user-id \"${input:test_user_id}\" --email \"${input:test_user_email}\"",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "presentation": {
+            "reveal": "always",
+            "focus": true,
+            "panel": "shared"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: Profile",
+        "type": "shell",
+        "command": "pnpm clean && pnpm build && node --env-file=.env ${input:profileFlags} dist/src/entrypoints/api.js",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "presentation": {
+            "reveal": "always",
+            "panel": "shared"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: Run with heap snapshots enabled",
+        "type": "shell",
+        "command": "pnpm clean && pnpm build && node --env-file=.env --heapsnapshot-signal=SIGUSR2 dist/src/entrypoints/api.js",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "presentation": {
+            "reveal": "always",
+            "panel": "shared"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: Trigger heap snapshot",
+        "type": "shell",
+        "command": "kill -USR2 $(pgrep -f 'dist/src/entrypoints/api.js') && echo 'Heap snapshot written to apps/api/'",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "presentation": {
+            "reveal": "always",
+            "panel": "shared"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: Trace GC activity",
+        "type": "shell",
+        "command": "pnpm clean && pnpm build && node --env-file=.env --trace-gc dist/src/entrypoints/api.js",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "presentation": {
+            "reveal": "always",
+            "panel": "shared"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: Test current file",
+        "type": "shell",
+        "command": "pnpm",
+        "args": [
+            "test:one",
+            "--",
+            "**/${fileBasenameNoExtension}.js"
+        ],
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "group": "test",
+        "presentation": {
+            "reveal": "always"
+        }
+    },
+    {
+        "label": "API: Profile current test file",
+        "type": "shell",
+        "command": "pnpm clean && pnpm build && node --enable-source-maps --experimental-test-isolation=none --env-file=.env.test ${input:profileFlags} --test --test-reporter=spec **/${fileBasenameNoExtension}.js",
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "group": "test",
+        "presentation": {
+            "reveal": "always"
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "API: Test All",
+        "type": "shell",
+        "command": "pnpm",
+        "args": [
+            "test:all"
+        ],
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "group": "test",
+        "presentation": {
+            "reveal": "always"
+        }
+    },
+    {
+        "label": "API: Generate typeorm migration",
+        "type": "shell",
+        "command": "pnpm typeorm migration:generate ./src/sql/migrations/${input:migration_name} && pnpm lint ./src/sql/migrations/*${input:migration_name}.ts --fix",
+        "presentation": {
+            "reveal": "always",
+            "focus": false,
+            "panel": "shared"
+        },
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "problemMatcher": []
+    },
+    {
+    "label": "API: Create typeorm migration",
+        "type": "shell",
+        "command": "pnpx typeorm migration:create ./src/sql/migrations/${input:migration_name} && pnpm lint ./src/sql/migrations/*${input:migration_name}.ts --fix",
+        "presentation": {
+            "reveal": "always",
+            "focus": false,
+            "panel": "shared"
+        },
+        "options": {
+            "cwd": "${workspaceFolder}/apps/api"
+        },
+        "problemMatcher": []
+    }
+],
+  "inputs": [
+        {
+            "id": "migration_name",
+            "type": "promptString",
+            "description": "name of the migration"
+        },
+        {
+            "id": "test_user_id",
+            "type": "promptString",
+            "description": "Zitadel user ID, check https://zitadel.internal.appwi.se/ui/console/users/me"
+        },
+        {
+            "id": "test_user_email",
+            "type": "promptString",
+            "description": "User email address"
+        },
+        {
+            "id": "profileFlags",
+            "type": "pickString",
+            "description": "Select profiling mode",
+            "options": [
+                "--cpu-prof --cpu-prof-dir=./profiles --cpu-prof-name=cpu-$(date +%Y%m%d-%H%M%S).cpuprofile",
+                "--heap-prof --heap-prof-dir=./profiles --heap-prof-name=heap-$(date +%Y%m%d-%H%M%S).heapprofile"
+            ],
+            "default": "--cpu-prof --cpu-prof-dir=./profiles --cpu-prof-name=cpu-$(date +%Y%m%d-%H%M%S).cpuprofile"
+        }
+    ]
+}

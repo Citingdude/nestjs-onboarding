@@ -1,0 +1,13 @@
+{
+  "password-reset": {
+    "subject": "Wachtwoord opnieuw instellen",
+    "heading": "Stel uw wachtwoord opnieuw in",
+    "body": {
+      "text": "Er is een verzoek ingediend om het wachtwoord van je account te resetten. Je kunt je wachtwoord opnieuw instellen via de knop hieronder.",
+      "subText": "Deze link is geldig gedurende {duration} en kan slechts één keer worden gebruikt."
+    },
+    "button": {
+      "text": "Wachtwoord opnieuw instellen"
+    }
+  }
+}

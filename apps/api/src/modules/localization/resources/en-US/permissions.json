@@ -1,0 +1,206 @@
+{
+	"all_permissions": {
+		"group-name": "Admin",
+		"name": "All permissions",
+		"description": "This permissions is a special permission which overrules all other permissions"
+	},
+	"api_key": {
+		"group-name": "API Keys",
+		"create": {
+			"name": "Create",
+			"description": "Create API keys"
+		},
+		"delete": {
+			"name": "Delete All",
+			"description": "Delete API keys for any user"
+		},
+		"delete_own": {
+			"name": "Delete Own",
+			"description": "Delete your own API keys"
+		},
+		"read": {
+			"name": "Read All",
+			"description": "View API keys for any user"
+		},
+		"read_own": {
+			"name": "Read Own",
+			"description": "View your own API keys"
+		}
+	},
+	"contact": {
+		"group-name": "Contact",
+		"create": {
+			"name": "Create",
+			"description": "Create contact persons"
+		},
+		"delete": {
+			"name": "Delete",
+			"description": "Delete contact persons"
+		},
+		"export": {
+			"name": "Export",
+			"description": "Export contact persons to CSV"
+		},
+		"read": {
+			"name": "Read",
+			"description": "View overview en detailed info about contact persons"
+		},
+		"update": {
+			"name": "Update",
+			"description": "Update contact persons"
+		}
+	},
+	"event-log": {
+		"group-name": "Event Log",
+		"export": {
+			"name": "Export",
+			"description": "Export event logs"
+		},
+		"read": {
+			"name": "Read",
+			"description": "View event logs"
+		}
+	},
+	"file": {
+		"group-name": "Files",
+		"create": {
+			"name": "Create",
+			"description": "Upload new files"
+		},
+		"read": {
+			"name": "Read",
+			"description": "View uploaded files"
+		}
+	},
+	"jobs": {
+		"group-name": "Jobs",
+		"read": {
+			"detail": {
+				"name": "View Details",
+				"description": "View detailed job information"
+			},
+			"index": {
+				"name": "View List",
+				"description": "View job list"
+			}
+		}
+	},
+	"export": {
+		"group-name": "Exports",
+		"read": {
+			"name": "Read",
+			"description": "View exports"
+		}
+	},
+	"notification": {
+		"group-name": "Notifications",
+		"migrate-type": {
+			"name": "Migrate Type",
+			"description": "Migrate notification types"
+		},
+		"preferences": {
+			"read": {
+				"own": {
+					"name": "Read Preferences",
+					"description": "View your notification preferences"
+				}
+			},
+			"update": {
+				"channel": {
+					"name": "Update Channel Preferences",
+					"description": "Change preferred notification channels"
+				},
+				"preset": {
+					"name": "Update Presets",
+					"description": "Change notification preset settings"
+				},
+				"types": {
+					"name": "Update Types",
+					"description": "Change allowed notification types"
+				}
+			}
+		},
+		"read": {
+			"config": {
+				"name": "Read Configuration",
+				"description": "Read notification configuration"
+			},
+			"own": {
+				"name": "Read Own",
+				"description": "Read own notifications"
+			}
+		},
+		"send-test": {
+			"name": "Send Test Notification",
+			"description": "Send a test notification"
+		},
+		"update": {
+			"read": {
+				"name": "Mark Read",
+				"description": "Mark notifications as read"
+			},
+			"unread": {
+				"name": "Mark Unread",
+				"description": "Mark notifications as unread"
+			}
+		}
+	},
+	"role": {
+		"group-name": "Roles",
+		"cache": {
+			"clear": {
+				"name": "Clear Cache",
+				"description": "Clear role permission cache"
+			}
+		},
+		"create": {
+			"name": "Create",
+			"description": "Create new roles"
+		},
+		"delete": {
+			"name": "Delete",
+			"description": "Delete roles"
+		},
+		"read": {
+			"name": "Read",
+			"description": "View roles and permissions"
+		},
+		"update": {
+			"name": "Update",
+			"description": "Update existing roles"
+		}
+	},
+	"send_push_notification": {
+		"group-name": "Push Notifications",
+		"name": "Send Push",
+		"description": "Send push notifications to users"
+	},
+	"typesense": {
+		"group-name": "Search",
+		"name": "Access Typesense",
+		"description": "Access and manage Typesense search index"
+	},
+	"user": {
+		"group-name": "Users",
+		"create": {
+			"name": "Create",
+			"description": "Create user accounts"
+		},
+		"delete": {
+			"name": "Delete",
+			"description": "Delete user accounts"
+		},
+		"impersonate": {
+			"name": "Impersonate",
+			"description": "Impersonate another user"
+		},
+		"read": {
+			"name": "Read",
+			"description": "View user accounts"
+		},
+		"update": {
+			"name": "Update",
+			"description": "Update user accounts"
+		}
+	}
+}

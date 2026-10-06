@@ -1,0 +1,1 @@
+export const SEARCH_COLLECTIONS_LIMIT = 20

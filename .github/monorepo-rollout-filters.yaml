@@ -1,0 +1,11 @@
+---
+# Filters used for triggering apps deployments
+
+# Environments (change in `base` will deploy everywhere)
+nest|api:
+  - '.github/**'
+  - 'apps/api/**'
+  - 'Dockerfile'
+  - 'package.json'
+  - 'pnpm-lock.yaml'
+  - 'pnpm-workspace.yaml'

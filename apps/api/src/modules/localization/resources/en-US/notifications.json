@@ -1,0 +1,18 @@
+{
+	"system": {
+		"group-name": "System",
+		"group-description": "Internal messages used for debugging, testing, and system monitoring. Not intended for end-user visibility.",
+		"test-notification": {
+			"content": "Test notification \"{message}\"",
+			"description": "Receive test notifications"
+		}
+	},
+	"user": {
+		"group-name": "Users",
+		"group-description": "Notifications related to user activity, preferences, alerts, and required actions.",
+		"created": {
+			"content": "A new user has been created",
+			"description": "Get notified about new users"
+		}
+	}
+}

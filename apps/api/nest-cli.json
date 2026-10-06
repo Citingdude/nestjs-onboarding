@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "monorepo": true,
+  "root": "src",
+  "entryFile": "entrypoints/api",
+  "compilerOptions": {
+    "builder": {
+      "type": "swc",
+      "options": {
+        "stripLeadingPaths": false
+      }
+    },
+    "typeCheck": false,
+    "assets": [
+      {
+        "include": "**/*.hbs",
+        "outDir": "dist/src"
+      },
+      {
+        "include": "modules/websocket/documentation.md",
+        "outDir": "dist/src"
+      },
+      {
+        "include": "**/*.json",
+        "outDir": "dist/src",
+        "watchAssets": true
+      },
+      {
+        "include": "modules/swagger/resources/oauth2-redirect.html",
+        "outDir": "dist/src"
+      },
+      {
+        "include": "../.async-api/async-api.html",
+        "outDir": "dist/src/modules/async-api"
+      },
+      {
+        "include": "../.async-api/async-api.yaml",
+        "outDir": "dist/src/modules/async-api"
+      }
+    ],
+    "deleteOutDir": true
+  },
+  "projects": {
+    "api": {
+      "type": "application",
+      "root": "src",
+      "entryFile": "entrypoints/api",
+      "sourceRoot": "src"
+    },
+    "worker": {
+      "type": "application",
+      "root": "src",
+      "entryFile": "entrypoints/worker",
+      "sourceRoot": "src"
+    },
+    "cronjob": {
+      "type": "application",
+      "root": "src",
+      "entryFile": "entrypoints/cronjob",
+      "sourceRoot": "src"
+    },
+    "wss": {
+      "type": "application",
+      "root": "src",
+      "entryFile": "entrypoints/websocket-server",
+      "sourceRoot": "src"
+    },
+    "playground": {
+      "type": "application",
+      "root": "src",
+      "entryFile": "entrypoints/playground",
+      "sourceRoot": "src"
+    },
+    "otel-metrics-reporter": {
+      "type": "application",
+      "root": "src",
+      "entryFile": "entrypoints/otel-metrics-reporter",
+      "sourceRoot": "src"
+    },
+    "nats-app": {
+      "type": "application",
+      "root": "src",
+      "entryFile": "entrypoints/nats-app",
+      "sourceRoot": "src"
+    }
+  }
+}

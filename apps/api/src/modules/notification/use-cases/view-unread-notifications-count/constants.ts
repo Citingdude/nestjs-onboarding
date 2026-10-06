@@ -1,0 +1,1 @@
+export const MAX_UNREAD_NOTIFICATIONS_COUNT = 99

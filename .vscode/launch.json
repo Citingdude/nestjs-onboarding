@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch nats",
+            "program": "dist/src/entrypoints/nats-app.js",
+            "request": "launch",
+            "envFile": "${workspaceFolder}/apps/api/.env",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "cwd": "${workspaceFolder}/apps/api",
+            "outputCapture": "std",
+            "type": "node"
+        },  
+        {
+            "name": "Test all",
+            "request": "launch",
+            "runtimeArgs": [
+                "test:all"
+            ],
+            "runtimeExecutable": "pnpm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "outputCapture": "std",
+            "cwd": "${workspaceFolder}/apps/api",
+            "type": "node"
+        },
+        {
+            "name": "Start api",
+            "request": "launch",
+            "runtimeArgs": [
+                "dev"
+            ],
+            "runtimeExecutable": "pnpm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "outputCapture": "std",
+            "cwd": "${workspaceFolder}/apps/api",
+            "type": "node"
+        },
+        {
+            "name": "Test current file",
+            "request": "launch",
+            "runtimeArgs": [
+                "test:one",
+                "**/${fileBasenameNoExtension}.js"
+            ],
+            "runtimeExecutable": "pnpm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "outputCapture": "std",
+            "cwd": "${workspaceFolder}/apps/api",
+            "type": "node"
+        }
+    ]
+}

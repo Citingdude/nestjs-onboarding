@@ -1,0 +1,41 @@
+blockExoticSubdeps: false
+packages:
+  - 'apps/*'
+  - 'packages/**'
+allowBuilds:
+  '@nestjs/core': true
+  '@scarf/scarf': true
+  '@swc/core': true
+  core-js: true
+  protobufjs: true
+  unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@wisemen/*'
+overrides:
+  '@fastify/static@<=10.1.0': ^10.1.1
+  '@fastify/static@<=10.1.1': ^10.1.2
+  '@hono/node-server@<2.0.5': ^2.0.5
+  '@opentelemetry/core@<2.8.0': ^2.8.0
+  '@opentelemetry/propagator-jaeger@<2.9.0': ^2.9.0
+  axios@>=1.0.0 <1.15.0: ^1.15.0
+  axios@>=1.0.0 <1.15.1: ^1.15.1
+  axios@>=1.0.0 <1.15.2: ^1.15.2
+  axios@>=1.0.0 <1.16.0: ^1.16.0
+  axios@>=1.7.0 <1.16.0: ^1.16.0
+  brace-expansion@<=5.0.7: ^5.0.8
+  fastify@<5.12.1: ^5.12.1
+  fastify@>=5.8.3 <5.12.1: ^5.12.1
+  find-my-way@<=9.6.0: ^9.6.1
+  js-yaml@>=4.0.0 <4.3.1: ^4.3.1
+  js-yaml@>=5.0.0 <=5.2.1: ^5.2.2
+  lodash@<=4.17.23: ^4.17.24
+  lodash@>=4.0.0 <=4.17.23: ^4.17.24
+  path-to-regexp@>=8.0.0 <8.4.0: ^8.4.0
+  protobufjs@>=8.0.0 <8.2.0: ^8.2.0
+  protobufjs@>=8.0.0 <=8.0.1: ^8.0.2
+  undici@<6.23.0: ^6.23.0
+  undici@<6.24.0: ^6.24.0
+  undici@<6.27.0: ^6.27.0
+  undici@<6.28.0: ^6.28.0
+  undici@>=6.0.0 <6.21.2: ^6.21.2
+  undici@>=6.0.0 <6.24.0: ^6.24.0

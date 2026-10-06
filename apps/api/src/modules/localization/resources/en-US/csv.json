@@ -1,0 +1,24 @@
+{
+  "contacts": {
+    "file-name": "contacts-{date}.csv",
+    "uuid": "uuid",
+    "first-name": "first_name",
+    "last-name": "last_name",
+    "email": "email",
+    "phone": "phone"
+  },
+  "event-logs": {
+    "file-name": "event-logs-{date}.csv",
+    "uuid": "UUID",
+    "created-at": "Created at",
+    "version": "Version",
+    "source": "Source",
+    "type": "Type",
+    "subject-type": "Subject Type",
+    "subject-id": "Subject ID",
+    "actor-type": "Actor Type",
+    "actor-id": "Actor ID",
+    "content": "Content",
+    "trace-id": "Trace ID"
+  }
+}

@@ -1,0 +1,206 @@
+{
+	"all_permissions": {
+		"group-name": "Beheer",
+		"name": "Alle rechten",
+		"description": "Deze permissie is een speciale permissie die alle andere permissies overschrijft"
+	},
+	"api_key": {
+		"group-name": "API-sleutels",
+		"create": {
+			"name": "Aanmaken",
+			"description": "API-sleutels aanmaken"
+		},
+		"delete": {
+			"name": "Alles verwijderen",
+			"description": "API-sleutels van elke gebruiker verwijderen"
+		},
+		"delete_own": {
+			"name": "Eigen verwijderen",
+			"description": "Eigen API-sleutels verwijderen"
+		},
+		"read": {
+			"name": "Alles bekijken",
+			"description": "API-sleutels van elke gebruiker bekijken"
+		},
+		"read_own": {
+			"name": "Eigen bekijken",
+			"description": "Eigen API-sleutels bekijken"
+		}
+	},
+	"contact": {
+		"group-name": "Contactpersonen",
+		"create": {
+			"name": "Aanmaken",
+			"description": "Contactpersonen aanmaken"
+		},
+		"delete": {
+			"name": "Verwijderen",
+			"description": "Contactpersonen verwijderen"
+		},
+		"export": {
+			"name": "Exporteren",
+			"description": "Contactpersonen naar CSV exporteren"
+		},
+		"read": {
+			"name": "Bekijken",
+			"description": "Overzicht en detailinformatie van contactpersonen bekijken"
+		},
+		"update": {
+			"name": "Bewerken",
+			"description": "Contactpersonen bewerken"
+		}
+	},
+	"event-log": {
+		"group-name": "Logboek",
+		"export": {
+			"name": "Exporteren",
+			"description": "Exporteer logboekgegevens"
+		},
+		"read": {
+			"name": "Bekijken",
+			"description": "Logboekgegevens bekijken"
+		}
+	},
+	"file": {
+		"group-name": "Bestanden",
+		"create": {
+			"name": "Uploaden",
+			"description": "Nieuwe bestanden uploaden"
+		},
+		"read": {
+			"name": "Bekijken",
+			"description": "Geüploade bestanden bekijken"
+		}
+	},
+	"jobs": {
+		"group-name": "Taken",
+		"read": {
+			"detail": {
+				"name": "Details bekijken",
+				"description": "Gedetailleerde informatie over taken bekijken"
+			},
+			"index": {
+				"name": "Lijst bekijken",
+				"description": "Takenlijst bekijken"
+			}
+		}
+	},
+	"export": {
+		"group-name": "Exports",
+		"read": {
+			"name": "Bekijken",
+			"description": "Exports bekijken"
+		}
+	},
+	"notification": {
+		"group-name": "Meldingen",
+		"migrate-type": {
+			"name": "Type migreren",
+			"description": "Meldingstypes migreren"
+		},
+		"preferences": {
+			"read": {
+				"own": {
+					"name": "Voorkeuren bekijken",
+					"description": "Eigen meldingsvoorkeuren bekijken"
+				}
+			},
+			"update": {
+				"channel": {
+					"name": "Kanalen aanpassen",
+					"description": "Voorkeurskanalen voor meldingen wijzigen"
+				},
+				"preset": {
+					"name": "Presets aanpassen",
+					"description": "Voorkeursinstellingen voor meldingen wijzigen"
+				},
+				"types": {
+					"name": "Types aanpassen",
+					"description": "Toegestane meldingstypes wijzigen"
+				}
+			}
+		},
+		"read": {
+			"config": {
+				"name": "Configuratie bekijken",
+				"description": "Instellingen voor meldingen bekijken"
+			},
+			"own": {
+				"name": "Eigen meldingen",
+				"description": "Eigen meldingen bekijken"
+			}
+		},
+		"send-test": {
+			"name": "Testmelding verzenden",
+			"description": "Een testmelding versturen"
+		},
+		"update": {
+			"read": {
+				"name": "Markeer als gelezen",
+				"description": "Meldingen markeren als gelezen"
+			},
+			"unread": {
+				"name": "Markeer als ongelezen",
+				"description": "Meldingen markeren als ongelezen"
+			}
+		}
+	},
+	"role": {
+		"group-name": "Rollen",
+		"cache": {
+			"clear": {
+				"name": "Cache legen",
+				"description": "Permissiecache van rollen legen"
+			}
+		},
+		"create": {
+			"name": "Aanmaken",
+			"description": "Nieuwe rollen aanmaken"
+		},
+		"delete": {
+			"name": "Verwijderen",
+			"description": "Rollen verwijderen"
+		},
+		"read": {
+			"name": "Bekijken",
+			"description": "Rollen en rechten bekijken"
+		},
+		"update": {
+			"name": "Bewerken",
+			"description": "Bestaande rollen bewerken"
+		}
+	},
+	"send_push_notification": {
+		"group-name": "Pushmeldingen",
+		"name": "Push verzenden",
+		"description": "Pushmeldingen versturen naar gebruikers"
+	},
+	"typesense": {
+		"group-name": "Zoekfunctie",
+		"name": "Typesense openen",
+		"description": "Typesense-index beheren en raadplegen"
+	},
+	"user": {
+		"group-name": "Gebruikers",
+		"create": {
+			"name": "Aanmaken",
+			"description": "Gebruikersaccounts aanmaken"
+		},
+		"delete": {
+			"name": "Verwijderen",
+			"description": "Gebruikersaccounts verwijderen"
+		},
+		"impersonate": {
+			"name": "Imiteren",
+			"description": "Een andere gebruiker imiteren"
+		},
+		"read": {
+			"name": "Bekijken",
+			"description": "Gebruikersaccounts bekijken"
+		},
+		"update": {
+			"name": "Bewerken",
+			"description": "Gebruikersaccounts bewerken"
+		}
+	}
+}

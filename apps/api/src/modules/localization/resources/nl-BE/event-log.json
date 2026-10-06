@@ -1,0 +1,127 @@
+{
+	"contact": {
+		"created": {
+			"v1": "Contact aangemaakt"
+		},
+		"updated": {
+			"v1": "Contact aangepast"
+		},
+		"deleted": {
+			"v1": "Contact verwijderd"
+		},
+		"csv": {
+			"generated": {
+				"v1": "CSV-export van contactpersonen gegenereerd"
+			}
+		}
+	},
+	"api-key": {
+		"created": {
+			"v1": "API-sleutel aangemaakt"
+		},
+		"deleted": {
+			"v1": "API-sleutel verwijderd"
+		}
+	},
+	"export": {
+		"succeeded": {
+			"v1": "Export geslaagd"
+		},
+		"failed": {
+			"v1": "Export gefaald"
+		}
+	},
+	"file": {
+		"created": {
+			"v1": "Bestand aangemaakt"
+		},
+		"uploaded": {
+			"v1": "Bestand geüpload",
+			"v2": "Bestand geüpload"
+		},
+		"variant": {
+			"created": {
+				"v1": "Bestandsvariant {label} aangemaakt"
+			}
+		}
+	},
+	"notification": {
+		"created": {
+			"v1": "Notificatie aangemaakt {type}"
+		},
+		"read": {
+			"v1": "Notificatie gelezen",
+			"all": {
+				"v1": "Alle notificaties als gelezen gemarkeerd"
+			}
+		},
+		"unread": {
+			"v1": "Notificatie ongelezen"
+		},
+		"types": {
+			"migrated": {
+				"v1": "Notificatie types gemigreerd"
+			}
+		},
+		"preference": {
+			"preset": {
+				"updated": {
+					"v1": "Notificatie preset voorkeur aangepast"
+				}
+			}
+		}
+	},
+	"role": {
+		"created": {
+			"v1": "Nieuwe rol {roleName} aangemaakt"
+		},
+		"deleted": {
+			"v1": "Rol {roleName} verwijderd"
+		},
+		"renamed": {
+			"v1": "Rol {previousName} hernoemd naar {newName}"
+		},
+		"permissions": {
+			"updated": {
+				"v1": "De permissies van de rol {roleName} werden aangepast"
+			},
+			"cache": {
+				"cleared": {
+					"v1": "De cache van rol permissies is gewist"
+				}
+			}
+		}
+	},
+	"test-notification": {
+		"sent": {
+			"v1": "Testmelding verzonden"
+		}
+	},
+	"user": {
+		"created": {
+			"v1": "Gebruiker aangemaakt"
+		},
+		"updated": {
+			"v1": "Gebruiker bijgewerkt"
+		},
+		"role-assigned": {
+			"v1": "Rol toegekend aan gebruiker"
+		},
+		"roles-set": {
+			"v1": "Rollen van gebruikers ingesteld"
+		},
+		"impersonated": {
+			"v1": "Gebruiker geïmpersonate"
+		},
+		"notification": {
+			"created": {
+				"v1": "Gebruiker notificatie aangemaakt"
+			}
+		},
+		"default-notification-preferences": {
+			"assigned": {
+				"v1": "Standaard notificatie voorkeuren toegekend aan gebruiker"
+			}
+		}
+	}
+}

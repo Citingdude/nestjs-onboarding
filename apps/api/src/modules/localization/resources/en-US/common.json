@@ -1,0 +1,9 @@
+{
+  "duration": {
+    "hours": {
+      "one": "{count} hour",
+      "other": "{count} hours"
+    }
+  },
+  "missing-translation": "missing translation for {key}"
+}

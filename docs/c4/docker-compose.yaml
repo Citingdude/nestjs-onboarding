@@ -1,0 +1,10 @@
+services:
+  structurizr:
+    image: structurizr/structurizr:latest
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./:/usr/local/structurizr
+    command:
+      local
+
