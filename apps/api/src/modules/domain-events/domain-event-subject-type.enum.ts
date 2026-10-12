@@ -8,7 +8,8 @@ export enum DomainEventSubjectType {
   EXPORT = 'export',
   FILE = 'file',
   ROLE = 'role',
-  USER = 'user'
+  USER = 'user',
+  TODO = 'todo'
 }
 
 export function DomainEventSubjectTypeApiProperty (
