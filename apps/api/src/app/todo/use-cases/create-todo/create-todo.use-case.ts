@@ -1,12 +1,12 @@
-import type { DomainEventEmitter } from '@wisemen/nestjs-domain-events'
-import type { DataSource } from 'typeorm'
+import { DomainEventEmitter } from '@wisemen/nestjs-domain-events'
+import { DataSource } from 'typeorm'
 import { transaction } from '@wisemen/nestjs-typeorm'
 import { Injectable } from '@nestjs/common'
-import type { CreateTodoCommand } from '#src/app/todo/use-cases/create-todo/create-todo.command.js'
+import { CreateTodoCommand } from '#src/app/todo/use-cases/create-todo/create-todo.command.js'
 import type { UserUuid } from '#src/modules/auth/users/entities/user.uuid.js'
 import { CreateTodoResponse } from '#src/app/todo/use-cases/create-todo/create-todo.response.js'
 import { TodoBuilder } from '#src/app/todo/entities/todo.entity.builder.js'
-import type { CreateTodoRepository } from '#src/app/todo/use-cases/create-todo/create-todo.repository.js'
+import { CreateTodoRepository } from '#src/app/todo/use-cases/create-todo/create-todo.repository.js'
 import { TodoCreatedEvent } from '#src/app/todo/use-cases/create-todo/todo-created.event.js'
 
 @Injectable()

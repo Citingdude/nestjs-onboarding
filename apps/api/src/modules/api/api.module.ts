@@ -29,6 +29,7 @@ import { AuditMiddleware } from '#src/modules/audit/audit.middleware.js'
 import { DomainEventLogActorMiddleware } from '#src/modules/domain-event-log/middleware/domain-event-log-actor.middleware.js'
 import { DomainEventLogActorContextModule } from '#src/modules/domain-event-log/modules/domain-event-log-actor-context/domain-event-log-actor.context.module.js'
 import { McpModule } from '#src/modules/mcp/mcp.module.js'
+import { TodoModule } from '#src/app/todo/todo.module.js'
 
 @Module({
   imports: [
@@ -58,7 +59,8 @@ import { McpModule } from '#src/modules/mcp/mcp.module.js'
     JobsApiModule,
     ApiKeyModule,
     DefaultApiThrottlerModule,
-    McpModule
+    McpModule,
+    TodoModule
   ]
 })
 export class ApiModule {

@@ -25,17 +25,24 @@ describe('Create todo', () => {
   it('blocks calls without authentication', async () => {
     const response = await request(setup.app.getHttpServer())
       .post('/api/v1/todos')
+
+    expect(response).toHaveStatus(401)
+  })
+
+  it('blocks unauthorized users', async () => {
+    const response = await request(setup.app.getHttpServer())
+      .post('/api/v1/todos')
       .set('Authorization', `Bearer ${unauthorizedUser.token}`)
       .send({})
 
-    expect(response).toHaveStatus(401)
+    expect(response).toHaveStatus(403)
   })
 
   it('validates the command', async () => {
     const response = await request(setup.app.getHttpServer())
       .post('/api/v1/todos')
       .set('Authorization', `Bearer ${user.token}`)
-      .send()
+      .send({})
 
     expect(response).toHaveStatus(400)
   })
@@ -43,7 +50,7 @@ describe('Create todo', () => {
   it('creates a todo', async () => {
     const command = new CreateTodoCommandBuilder()
       .withTitle('Test Todo')
-      .withDescription('Test description')
+      .withDescription('Test Description')
       .withDeadline(new Date())
       .build()
 
