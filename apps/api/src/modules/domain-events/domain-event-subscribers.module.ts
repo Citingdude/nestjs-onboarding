@@ -14,6 +14,7 @@ import { ContactUpdatedIntegrationSubscriberModule } from '#src/app/contact/use-
 import { ClearUserRoleCacheSubscriberModule } from '#src/modules/auth/users/use-cases/clear-user-role-cache/clear-user-role-cache.subscriber.module.js'
 import { EmitExportFailedModule } from '#src/app/export/use-cases/emit-export-failed/emit-export-failed.module.js'
 import { EmitExportSucceededModule } from '#src/app/export/use-cases/emit-export-succeeded/emit-export-succeeded.module.js'
+import { TodoCreatedIntegrationSubscriberModule } from '#src/app/todo/use-cases/create-todo/integration/todo-created.integration.subscriber.module.js'
 
 @Module({
   imports: [
@@ -37,6 +38,8 @@ import { EmitExportSucceededModule } from '#src/app/export/use-cases/emit-export
 
     SendAppNotificationSubscriberModule,
     SyncUserFromZitadelSubscriberModule,
+
+    TodoCreatedIntegrationSubscriberModule,
 
     UserTypesenseSubscriberModule
   ]
