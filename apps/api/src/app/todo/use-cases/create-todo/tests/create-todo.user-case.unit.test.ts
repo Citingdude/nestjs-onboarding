@@ -7,10 +7,10 @@ import { expect } from 'expect'
 import { TestBench } from '#src/modules/test-setup/test-bench.js'
 import { CreateTodoRepository } from '#src/app/todo/use-cases/create-todo/create-todo.repository.js'
 import { CreateTodoUseCase } from '#src/app/todo/use-cases/create-todo/create-todo.use-case.js'
-import { CreateTodoCommandBuilder } from '#src/app/todo/use-cases/tests/create-todo.command.builder.js'
 import type { UserUuid } from '#src/modules/auth/users/entities/user.uuid.js'
 import { TodoBuilder } from '#src/app/todo/entities/todo.entity.builder.js'
 import { TodoCreatedEvent } from '#src/app/todo/use-cases/create-todo/todo-created.event.js'
+import { CreateTodoCommandBuilder } from '#src/app/todo/use-cases/create-todo/tests/create-todo.command.builder.js'
 
 describe('CreateTodoUseCase Unit test', () => {
   before(() => {

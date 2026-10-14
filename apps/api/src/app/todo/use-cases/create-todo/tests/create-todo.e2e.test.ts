@@ -5,7 +5,7 @@ import { TestBench } from '#src/modules/test-setup/test-bench.js'
 import type { TestSetup } from '#src/modules/test-setup/test-setup.js'
 import { Permission } from '#src/modules/auth/permission/permission.enum.js'
 import type { TestUser } from '#src/modules/auth/users/tests/setup-user.type.js'
-import { CreateTodoCommandBuilder } from '#src/app/todo/use-cases/tests/create-todo.command.builder.js'
+import { CreateTodoCommandBuilder } from '#src/app/todo/use-cases/create-todo/tests/create-todo.command.builder.js'
 
 describe('Create todo', () => {
   let setup: TestSetup
