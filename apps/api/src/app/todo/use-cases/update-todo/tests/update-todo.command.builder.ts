@@ -9,7 +9,6 @@ export class UpdateTodoCommandBuilder {
     this.command.title = generateUuid()
     this.command.description = null
     this.command.deadline = null
-    this.command.completed = false
   }
 
   withTitle (title: string | null): this {
@@ -24,11 +23,6 @@ export class UpdateTodoCommandBuilder {
 
   withDeadline (deadline: string | null): this {
     this.command.deadline = deadline
-    return this
-  }
-
-  withCompleted (completed: boolean): this {
-    this.command.completed = completed
     return this
   }
 

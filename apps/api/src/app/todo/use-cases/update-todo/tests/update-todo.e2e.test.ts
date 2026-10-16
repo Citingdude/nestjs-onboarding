@@ -33,7 +33,6 @@ describe('Update todo e2e tests', () => {
       .withTitle('Finish onboarding')
       .withDescription('Updated description')
       .withDeadline(deadline)
-      .withCompleted(true)
       .build()
 
     const response = await request(setup.httpServer)
@@ -48,7 +47,7 @@ describe('Update todo e2e tests', () => {
       title: command.title,
       description: command.description,
       deadline: new Date(deadline),
-      completed: true,
+      completed: false,
       userUuid: todo.userUuid,
       createdAt: todo.createdAt
     })
@@ -77,7 +76,7 @@ describe('Update todo e2e tests', () => {
     })
   })
 
-  it('when clearing optional fields, persists nulls and reopens the todo', async () => {
+  it('when clearing optional fields, persists nulls and preserves completion status', async () => {
     const todo = new TodoBuilder()
       .withUserUuid(user.user.uuid)
       .withDescription('Before')
@@ -93,7 +92,7 @@ describe('Update todo e2e tests', () => {
 
     expect(response).toHaveStatus(204)
     const updated = await setup.entityManager.findOneByOrFail(Todo, { uuid: todo.uuid })
-    expect(updated).toMatchObject({ description: null, deadline: null, completed: false })
+    expect(updated).toMatchObject({ description: null, deadline: null, completed: true })
   })
 
   it('when the todo does not exist, returns 404', async () => {

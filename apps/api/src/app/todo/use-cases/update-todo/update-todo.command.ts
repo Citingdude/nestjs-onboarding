@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsNullable } from '@wisemen/validators'
-import { IsBoolean, IsDateString, IsNotEmpty, IsString } from 'class-validator'
+import { IsDateString, IsNotEmpty, IsString } from 'class-validator'
 
 export class UpdateTodoCommand {
   @ApiProperty({ type: String, nullable: true })
@@ -18,9 +18,4 @@ export class UpdateTodoCommand {
   @IsDateString({ strict: true })
   @IsNullable()
   deadline: string | null
-
-  @ApiProperty({ type: Boolean, nullable: true })
-  @IsBoolean()
-  @IsNullable()
-  completed: boolean | null
 }

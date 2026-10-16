@@ -45,7 +45,6 @@ describe('UpdateTodoUseCase unit tests', () => {
       .withTitle('Updated title')
       .withDescription('Updated description')
       .withDeadline(deadline)
-      .withCompleted(true)
       .build()
 
     await useCase.execute(todo.uuid, command)
@@ -56,7 +55,7 @@ describe('UpdateTodoUseCase unit tests', () => {
       title: command.title,
       description: command.description,
       deadline: new Date(deadline),
-      completed: true
+      completed: false
     }))
     expect(emitter).toHaveEmitted(new TodoUpdatedEvent(todo.uuid))
     assert.callOrder(repository.updateTodo, emitter.emit)
@@ -81,7 +80,7 @@ describe('UpdateTodoUseCase unit tests', () => {
     })
   })
 
-  it('when nullable fields are cleared, saves nulls and can reopen a completed todo', async () => {
+  it('when nullable fields are cleared, saves nulls and preserves completion status', async () => {
     const todo = new TodoBuilder()
       .withDescription('Before')
       .withDeadline(new Date())
@@ -96,7 +95,7 @@ describe('UpdateTodoUseCase unit tests', () => {
     await useCase.execute(todo.uuid, new UpdateTodoCommandBuilder().build())
 
     assert.calledWithMatch(repository.updateTodo, {
-      description: null, deadline: null, completed: false
+      description: null, deadline: null, completed: true
     })
   })
 
