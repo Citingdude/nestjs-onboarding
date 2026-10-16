@@ -130,6 +130,9 @@
 		},
 		"updated": {
 			"v1": "Todo aangepast"
+		},
+		"deleted": {
+			"v1": "Todo verwijderd"
 		}
 	}
 }
