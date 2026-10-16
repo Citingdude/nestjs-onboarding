@@ -18,7 +18,8 @@ export class UpdateTodoCommand {
   @IsNullable()
   deadline: string | null
 
-  @ApiProperty({ type: Boolean })
+  @ApiProperty({ type: Boolean, nullable: true })
   @IsBoolean()
-  completed: boolean
+  @IsNullable()
+  completed: boolean | null
 }
