@@ -15,6 +15,13 @@ export class SearchCollectionsFilterContactQuery {
   isActive?: string
 }
 
+export class SearchCollectionsFilterTodoQuery {
+  @ApiProperty({ type: 'boolean', required: false })
+  @IsUndefinable()
+  @IsBooleanString()
+  completed?: string
+}
+
 export class SearchCollectionsFilterQuery {
   @OneOfTypesApiProperty(SearchCollectionsResponseItem, { required: false, isArray: true })
   @IsOptional()
@@ -28,6 +35,13 @@ export class SearchCollectionsFilterQuery {
   @Type(() => SearchCollectionsFilterContactQuery)
   @ValidateNested()
   contact?: SearchCollectionsFilterContactQuery
+
+  @ApiProperty({ type: SearchCollectionsFilterTodoQuery, required: false })
+  @IsObject()
+  @IsOptional()
+  @Type(() => SearchCollectionsFilterTodoQuery)
+  @ValidateNested()
+  todo?: SearchCollectionsFilterTodoQuery
 }
 
 export class SearchCollectionPaginationQuery {
