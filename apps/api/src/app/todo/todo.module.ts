@@ -4,6 +4,7 @@ import { ViewTodoIndexModule } from '#src/app/todo/use-cases/view-todo-index/vie
 import { ViewTodoDetailModule } from '#src/app/todo/use-cases/view-todo-detail/view-todo-detail.module.js'
 import { UpdateTodoModule } from '#src/app/todo/use-cases/update-todo/update-todo.module.js'
 import { DeleteTodoModule } from '#src/app/todo/use-cases/delete-todo/delete-todo.module.js'
+import { CompleteTodoModule } from '#src/app/todo/use-cases/complete-todo/complete-todo.module.js'
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { DeleteTodoModule } from '#src/app/todo/use-cases/delete-todo/delete-tod
     ViewTodoIndexModule,
     ViewTodoDetailModule,
     DeleteTodoModule,
-    UpdateTodoModule
+    UpdateTodoModule,
+    CompleteTodoModule
   ]
 })
 export class TodoModule {}

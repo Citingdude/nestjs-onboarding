@@ -171,6 +171,12 @@ export type I18nTranslations = {
             "updated": {
                 "v1": string;
             };
+            "completed": {
+                "v1": string;
+            };
+            "deleted": {
+                "v1": string;
+            };
         };
     };
     "mail": {

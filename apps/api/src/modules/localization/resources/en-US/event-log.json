@@ -131,6 +131,9 @@
 		"updated": {
 			"v1": "Todo updated"
 		},
+		"completed": {
+			"v1": "Todo completed"
+		},
 		"deleted": {
 			"v1": "Todo deleted"
 		}

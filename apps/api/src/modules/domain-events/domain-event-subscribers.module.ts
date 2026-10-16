@@ -17,6 +17,7 @@ import { EmitExportSucceededModule } from '#src/app/export/use-cases/emit-export
 import { TodoCreatedIntegrationSubscriberModule } from '#src/app/todo/use-cases/create-todo/integration/todo-created.integration.subscriber.module.js'
 import { TodoUpdatedIntegrationSubscriberModule } from '#src/app/todo/use-cases/update-todo/integration/todo-updated.integration.subscriber.module.js'
 import { TodoDeletedIntegrationSubscriberModule } from '#src/app/todo/use-cases/delete-todo/integration/todo-deleted.integration.subscriber.module.js'
+import { TodoCompletedIntegrationSubscriberModule } from '#src/app/todo/use-cases/complete-todo/integration/todo-completed.integration.subscriber.module.js'
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { TodoDeletedIntegrationSubscriberModule } from '#src/app/todo/use-cases/
     SyncUserFromZitadelSubscriberModule,
 
     TodoCreatedIntegrationSubscriberModule,
+    TodoCompletedIntegrationSubscriberModule,
     TodoDeletedIntegrationSubscriberModule,
     TodoUpdatedIntegrationSubscriberModule,
 
