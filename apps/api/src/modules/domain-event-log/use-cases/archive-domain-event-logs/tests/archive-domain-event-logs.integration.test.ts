@@ -1,5 +1,5 @@
 import { Writable } from 'node:stream'
-import { after, afterEach, before, describe, it } from 'node:test'
+import { after, afterEach, before, beforeEach, describe, it } from 'node:test'
 import type { TestContext } from 'node:test'
 import { assert } from 'sinon'
 import { expect } from 'expect'
@@ -44,6 +44,11 @@ describe('Archive domain event logs integration tests', () => {
     await setup.teardown()
   })
 
+  beforeEach(async () => {
+    await setup.entityManager.clear(DomainEventLogArchive)
+    await setup.entityManager.clear(DomainEventLog)
+  })
+
   afterEach(async () => {
     fileStorage.createUploadWritable.resetHistory()
     fileStorage.createUploadWritable.resetBehavior()
@@ -58,8 +63,6 @@ describe('Archive domain event logs integration tests', () => {
       insertArchive.restore()
     }
 
-    await setup.entityManager.clear(DomainEventLogArchive)
-    await setup.entityManager.clear(DomainEventLog)
     await setup.entityManager.query('SELECT pg_advisory_unlock_all()')
   })
 
