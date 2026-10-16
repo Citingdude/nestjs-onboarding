@@ -164,6 +164,14 @@ export type I18nTranslations = {
                 };
             };
         };
+        "todo": {
+            "created": {
+                "v1": string;
+            };
+            "updated": {
+                "v1": string;
+            };
+        };
     };
     "mail": {
         "password-reset": {

@@ -123,5 +123,13 @@
 				"v1": "Default notification preferences assigned to user"
 			}
 		}
+	},
+	"todo": {
+		"created": {
+			"v1": "Todo created"
+		},
+		"updated": {
+			"v1": "Todo updated"
+		}
 	}
 }

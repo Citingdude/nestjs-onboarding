@@ -123,5 +123,13 @@
 				"v1": "Standaard notificatie voorkeuren toegekend aan gebruiker"
 			}
 		}
+	},
+	"todo": {
+		"created": {
+			"v1": "Todo aangemaakt"
+		},
+		"updated": {
+			"v1": "Todo aangepast"
+		}
 	}
 }
