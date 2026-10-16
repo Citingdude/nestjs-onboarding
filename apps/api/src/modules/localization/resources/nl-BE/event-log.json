@@ -134,6 +134,9 @@
 		"completed": {
 			"v1": "Todo voltooid"
 		},
+		"uncompleted": {
+			"v1": "Todo als onvoltooid gemarkeerd"
+		},
 		"deleted": {
 			"v1": "Todo verwijderd"
 		}

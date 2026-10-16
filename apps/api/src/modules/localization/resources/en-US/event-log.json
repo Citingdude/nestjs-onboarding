@@ -134,6 +134,9 @@
 		"completed": {
 			"v1": "Todo completed"
 		},
+		"uncompleted": {
+			"v1": "Todo marked incomplete"
+		},
 		"deleted": {
 			"v1": "Todo deleted"
 		}

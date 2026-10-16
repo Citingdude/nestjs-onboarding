@@ -5,6 +5,7 @@ import { ViewTodoDetailModule } from '#src/app/todo/use-cases/view-todo-detail/v
 import { UpdateTodoModule } from '#src/app/todo/use-cases/update-todo/update-todo.module.js'
 import { DeleteTodoModule } from '#src/app/todo/use-cases/delete-todo/delete-todo.module.js'
 import { CompleteTodoModule } from '#src/app/todo/use-cases/complete-todo/complete-todo.module.js'
+import { UncompleteTodoModule } from '#src/app/todo/use-cases/uncomplete-todo/uncomplete-todo.module.js'
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { CompleteTodoModule } from '#src/app/todo/use-cases/complete-todo/comple
     ViewTodoDetailModule,
     DeleteTodoModule,
     UpdateTodoModule,
-    CompleteTodoModule
+    CompleteTodoModule,
+    UncompleteTodoModule
   ]
 })
 export class TodoModule {}
