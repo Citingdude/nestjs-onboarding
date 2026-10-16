@@ -174,6 +174,9 @@ export type I18nTranslations = {
             "completed": {
                 "v1": string;
             };
+            "uncompleted": {
+                "v1": string;
+            };
             "deleted": {
                 "v1": string;
             };

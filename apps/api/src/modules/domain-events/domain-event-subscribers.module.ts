@@ -18,6 +18,7 @@ import { TodoCreatedIntegrationSubscriberModule } from '#src/app/todo/use-cases/
 import { TodoUpdatedIntegrationSubscriberModule } from '#src/app/todo/use-cases/update-todo/integration/todo-updated.integration.subscriber.module.js'
 import { TodoDeletedIntegrationSubscriberModule } from '#src/app/todo/use-cases/delete-todo/integration/todo-deleted.integration.subscriber.module.js'
 import { TodoCompletedIntegrationSubscriberModule } from '#src/app/todo/use-cases/complete-todo/integration/todo-completed.integration.subscriber.module.js'
+import { TodoUncompletedIntegrationSubscriberModule } from '#src/app/todo/use-cases/uncomplete-todo/integration/todo-uncompleted.integration.subscriber.module.js'
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { TodoCompletedIntegrationSubscriberModule } from '#src/app/todo/use-case
     TodoCompletedIntegrationSubscriberModule,
     TodoDeletedIntegrationSubscriberModule,
     TodoUpdatedIntegrationSubscriberModule,
+    TodoUncompletedIntegrationSubscriberModule,
 
     UserTypesenseSubscriberModule
   ]
