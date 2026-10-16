@@ -51,5 +51,6 @@ export enum Permission {
   USER_DELETE = 'user.delete',
   USER_IMPERSONATE = 'user.impersonate',
 
-  TODO_CREATE = 'todo_create'
+  TODO_READ = 'todo.read',
+  TODO_CREATE = 'todo.create'
 }
