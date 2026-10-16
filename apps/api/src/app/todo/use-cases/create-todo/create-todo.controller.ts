@@ -1,5 +1,5 @@
 import { Body, Controller, Post, Version } from '@nestjs/common'
-import { ApiCreatedResponse } from '@nestjs/swagger'
+import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger'
 import { CreateTodoUseCase } from '#src/app/todo/use-cases/create-todo/create-todo.use-case.js'
 import { AuthContext } from '#src/modules/auth/context/auth.context.js'
 import { CreateTodoResponse } from '#src/app/todo/use-cases/create-todo/create-todo.response.js'
@@ -7,6 +7,7 @@ import { Permission } from '#src/modules/auth/permission/permission.enum.js'
 import { Permissions } from '#src/modules/auth/permission/permission.decorator.js'
 import { CreateTodoCommand } from '#src/app/todo/use-cases/create-todo/create-todo.command.js'
 
+@ApiTags('Todo')
 @Controller()
 export class CreateTodoController {
   constructor (
