@@ -3,7 +3,8 @@ import { ApiProperty } from '@nestjs/swagger'
 
 export enum TypesenseCollectionName {
   USER = 'user',
-  CONTACT = 'contact'
+  CONTACT = 'contact',
+  TODO = 'todo'
 }
 
 export function TypesenseCollectionNameApiProperty (

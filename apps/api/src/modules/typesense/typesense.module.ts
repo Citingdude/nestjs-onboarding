@@ -9,12 +9,14 @@ import { DefaultPgBossSchedulerModule } from '#src/modules/pgboss/default-pgboss
 import { TypesenseContactModule } from '#src/app/contact/typesense/contact.typesense.module.js'
 import { TypesenseUserModule } from '#src/modules/auth/users/typesense/user-typesense.module.js'
 import { TypesenseClientModule } from '#src/modules/typesense/typesense.client.module.js'
+import { TypesenseTodoModule } from '#src/app/todo/typesense/todo.typesense.module.js'
 
 @Module({
   imports: [
     TypesenseClientModule,
     TypesenseUserModule,
     TypesenseContactModule,
+    TypesenseTodoModule,
 
     MigrateCollectionsModule,
     ImportCollectionsModule,
