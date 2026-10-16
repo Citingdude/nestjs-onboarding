@@ -30,6 +30,7 @@ export enum DomainEventType {
 
   TODO_CREATED = 'todo.created',
   TODO_UPDATED = 'todo.updated',
+  TODO_DELETED = 'todo.deleted',
 
   USER_CREATED = 'user.created',
   USER_UPDATED = 'user.updated',

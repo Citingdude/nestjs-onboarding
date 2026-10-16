@@ -9,6 +9,7 @@ export enum IntegrationEventType {
 
   TODO_CREATED = 'todo.created',
   TODO_UPDATED = 'todo.updated',
+  TODO_DELETED = 'todo.deleted',
 
   EXPORT_FAILED = 'export.failed',
   EXPORT_SUCCEEDED = 'export.succeeded',

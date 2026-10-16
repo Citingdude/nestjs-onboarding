@@ -53,5 +53,6 @@ export enum Permission {
 
   TODO_READ = 'todo.read',
   TODO_CREATE = 'todo.create',
-  TODO_UPDATE = 'todo.update'
+  TODO_UPDATE = 'todo.update',
+  TODO_DELETE = 'todo.delete'
 }
