@@ -46,6 +46,11 @@ export class TodoBuilder {
     return this
   }
 
+  withCompleted (completed: boolean): this {
+    this.todo.completed = completed
+    return this
+  }
+
   build (): Todo {
     return this.todo
   }
