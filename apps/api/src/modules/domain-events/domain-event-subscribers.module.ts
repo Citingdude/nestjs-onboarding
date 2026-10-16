@@ -15,6 +15,7 @@ import { ClearUserRoleCacheSubscriberModule } from '#src/modules/auth/users/use-
 import { EmitExportFailedModule } from '#src/app/export/use-cases/emit-export-failed/emit-export-failed.module.js'
 import { EmitExportSucceededModule } from '#src/app/export/use-cases/emit-export-succeeded/emit-export-succeeded.module.js'
 import { TodoCreatedIntegrationSubscriberModule } from '#src/app/todo/use-cases/create-todo/integration/todo-created.integration.subscriber.module.js'
+import { TodoUpdatedIntegrationSubscriberModule } from '#src/app/todo/use-cases/update-todo/integration/todo-updated.integration.subscriber.module.js'
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { TodoCreatedIntegrationSubscriberModule } from '#src/app/todo/use-cases/
     SyncUserFromZitadelSubscriberModule,
 
     TodoCreatedIntegrationSubscriberModule,
+    TodoUpdatedIntegrationSubscriberModule,
 
     UserTypesenseSubscriberModule
   ]

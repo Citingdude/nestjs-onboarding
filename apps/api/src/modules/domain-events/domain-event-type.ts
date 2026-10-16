@@ -29,6 +29,7 @@ export enum DomainEventType {
   TEST_NOTIFICATION_SENT = 'test-notification.sent',
 
   TODO_CREATED = 'todo.created',
+  TODO_UPDATED = 'todo.updated',
 
   USER_CREATED = 'user.created',
   USER_UPDATED = 'user.updated',

@@ -8,6 +8,7 @@ export enum IntegrationEventType {
   CONTACTS_EXPORTED = 'contacts.exported',
 
   TODO_CREATED = 'todo.created',
+  TODO_UPDATED = 'todo.updated',
 
   EXPORT_FAILED = 'export.failed',
   EXPORT_SUCCEEDED = 'export.succeeded',
