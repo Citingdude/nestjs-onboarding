@@ -62,6 +62,25 @@ describe('UpdateTodoUseCase unit tests', () => {
     assert.callOrder(repository.updateTodo, emitter.emit)
   })
 
+  it('when title is null, preserves the existing title while updating other fields', async () => {
+    const todo = new TodoBuilder().withTitle('Existing title').build()
+    const repository = createStubInstance(UpdateTodoRepository)
+    repository.findTodo.resolves(todo)
+    const useCase = new UpdateTodoUseCase(
+      stubDataSource(), createStubInstance(DomainEventEmitter), repository
+    )
+    const command = new UpdateTodoCommandBuilder()
+      .withTitle(null)
+      .withDescription('Updated description')
+      .build()
+
+    await useCase.execute(todo.uuid, command)
+
+    assert.calledWithMatch(repository.updateTodo, {
+      title: 'Existing title', description: 'Updated description'
+    })
+  })
+
   it('when nullable fields are cleared, saves nulls and can reopen a completed todo', async () => {
     const todo = new TodoBuilder()
       .withDescription('Before')

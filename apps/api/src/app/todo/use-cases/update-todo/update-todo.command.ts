@@ -3,10 +3,11 @@ import { IsNullable } from '@wisemen/validators'
 import { IsBoolean, IsDateString, IsNotEmpty, IsString } from 'class-validator'
 
 export class UpdateTodoCommand {
-  @ApiProperty({ type: String })
+  @ApiProperty({ type: String, nullable: true })
   @IsString()
   @IsNotEmpty()
-  title: string
+  @IsNullable()
+  title: string | null
 
   @ApiProperty({ type: String, nullable: true })
   @IsString()

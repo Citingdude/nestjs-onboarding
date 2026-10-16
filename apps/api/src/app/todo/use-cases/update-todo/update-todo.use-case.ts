@@ -23,7 +23,7 @@ export class UpdateTodoUseCase {
         throw new TodoNotFoundError(uuid)
       }
 
-      todo.title = command.title
+      todo.title = command.title ?? todo.title
       todo.description = command.description
       todo.deadline = command.deadline === null ? null : new Date(command.deadline)
       todo.completed = command.completed ?? todo.completed

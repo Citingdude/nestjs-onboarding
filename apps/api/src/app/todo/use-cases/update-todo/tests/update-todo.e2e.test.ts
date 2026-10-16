@@ -54,6 +54,29 @@ describe('Update todo e2e tests', () => {
     })
   })
 
+  it('when title is null, accepts the command and preserves the existing title', async () => {
+    const todo = new TodoBuilder()
+      .withUserUuid(user.user.uuid)
+      .withTitle('Existing title')
+      .build()
+    await setup.entityManager.insert(Todo, todo)
+    const command = new UpdateTodoCommandBuilder()
+      .withTitle(null)
+      .withDescription('Updated description')
+      .build()
+
+    const response = await request(setup.httpServer)
+      .put(`/api/v1/todos/${todo.uuid}`)
+      .set('Authorization', `Bearer ${user.token}`)
+      .send(command)
+
+    expect(response).toHaveStatus(204)
+    const updated = await setup.entityManager.findOneByOrFail(Todo, { uuid: todo.uuid })
+    expect(updated).toMatchObject({
+      title: 'Existing title', description: 'Updated description'
+    })
+  })
+
   it('when clearing optional fields, persists nulls and reopens the todo', async () => {
     const todo = new TodoBuilder()
       .withUserUuid(user.user.uuid)

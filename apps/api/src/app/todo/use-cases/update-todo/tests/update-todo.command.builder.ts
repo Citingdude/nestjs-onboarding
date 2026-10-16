@@ -12,7 +12,7 @@ export class UpdateTodoCommandBuilder {
     this.command.completed = false
   }
 
-  withTitle (title: string): this {
+  withTitle (title: string | null): this {
     this.command.title = title
     return this
   }
